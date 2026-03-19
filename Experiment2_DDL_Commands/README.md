@@ -104,124 +104,202 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+---
+
+Create a table named Reviews with the following columns:
+
+ReviewID as INTEGER
+ProductID as INTEGER
+Rating as REAL
+ReviewText as TEXT
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE Reviews(
+ReviewID INTEGER,
+ProductID INTEGER,
+Rating REAL,
+ReviewText TEXT
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1187" height="394" alt="image" src="https://github.com/user-attachments/assets/7ffe7d1b-d0dd-4bf3-9a84-ccb0038a206b" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE item(
+item_id TEXT PRIMARY KEY,
+item_desc TEXT NOT NULL,
+rate INTEGER NOT NULL,
+icom_id TEXT CHECK(length(icom_id)=4),
+FOREIGN KEY(icom_id) REFERENCES company(com_id) ON UPDATE CASCADE ON DELETE CASCADE);
 ```
 
 **Output:**
+<img width="1183" height="324" alt="image" src="https://github.com/user-attachments/assets/910c644c-31af-4165-baf1-ae7d6f16d0d7" />
 
-![Output2](output.png)
 
 **Question 3**
 ---
--- Paste Question 3 here
+In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
 ```sql
--- Paste your SQL code below for Question 3
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, Marks)
+VALUES (205, 'Olivia Green', 'F', NULL, NULL);
+INSERT INTO Student_details 
+VALUES (207, 'Liam Smith', 'M', 'Mathematics', 85);
+INSERT INTO Student_details 
+VALUES (208, 'Sophia Johns', 'F', 'Science', NULL);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1179" height="208" alt="image" src="https://github.com/user-attachments/assets/b657847e-cc01-4109-b03d-58bd4c477818" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write an SQL query to add a new column salary of type INTEGER to the Employees table, with a CHECK constraint that ensures the value in this column is greater than 0.
 
 ```sql
--- Paste your SQL code below for Question 4
+ALTER TABLE Employees
+Add COLUMN salary INTEGER CHECK(salary > 0);
 ```
 
 **Output:**
+<img width="1192" height="256" alt="image" src="https://github.com/user-attachments/assets/fcd4cfec-fda9-438d-8e4a-a88bdabb9393" />
 
-![Output4](output.png)
 
 **Question 5**
 ---
--- Paste Question 5 here
+
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE Bonuses(
+BonusID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+BonusAmount REAL CHECK(BonusAmount > 0),
+BonusDate DATE,
+Reason TEXT NOT NULL,
+FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID));
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1187" height="269" alt="image" src="https://github.com/user-attachments/assets/f19b883f-caf7-42b9-a1e2-ab118d23aec5" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 
 ```sql
--- Paste your SQL code below for Question 6
+CREATE TABLE ProjectAssignments(
+AssignmentID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+ProjectID INTEGER,
+AssignmentDate DATE NOT NULL,
+FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID),
+FOREIGN KEY(ProjectID) REFERENCES Projects(ProjectID));
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1028" height="190" alt="image" src="https://github.com/user-attachments/assets/645c2a92-ab27-427d-954b-c306b933433c" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
 
 ```sql
--- Paste your SQL code below for Question 7
+CREATE TABLE Attendance(
+AttendanceID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+AttendanceDate DATE,
+Status TEXT CHECK(Status IN('Present', 'Absent', 'Leave')),
+FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID));
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1029" height="188" alt="image" src="https://github.com/user-attachments/assets/9b7d2e28-047f-469f-8f46-196c9450fc3e" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write an SQL query to change the name of the column id to employee_id in the table employee.
 
 ```sql
--- Paste your SQL code below for Question 8
+ALTER TABLE employee
+RENAME COLUMN id TO employee_id;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1187" height="222" alt="image" src="https://github.com/user-attachments/assets/6682a9f5-d21e-4747-8f29-447a68db958b" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+
+Insert all books from Out_of_print_books into Books
+
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
 
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO BOOKS (ISBN, Title, Author, Publisher, YearPublished)
+SELECT ISBN, Title, Author, Publisher, YearPublished 
+FROM Out_of_print_books;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1179" height="201" alt="image" src="https://github.com/user-attachments/assets/e5f3a9ad-04bb-4c73-84b4-89f53649071d" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+
+Insert a record with EmployeeID 001, Name Sarah Parker, Position Manager, Department HR, and Salary 60000 into the Employee table.
+
+
 
 ```sql
--- Paste your SQL code below for Question 10
+INSERT INTO Employee (EmployeeID, Name, Position, Department, Salary)
+VALUES(1, 'Sarah Parker', 'Manager', 'HR', 60000);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1184" height="163" alt="image" src="https://github.com/user-attachments/assets/6e22bcfa-d348-4e4e-be02-815a4c81d986" />
+
 
 
 ## RESULT
